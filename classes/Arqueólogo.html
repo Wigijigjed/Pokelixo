@@ -1,127 +1,488 @@
-<div style="background:#3a3a4d;color:#e8e8e8;padding:15px;border-radius:8px;border-left:4px solid #5a9d6a;">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PTA Homebrew — Arqueólogo Rank 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
 
-<h3 style="color:#6bb87d;margin-top:0;">Classe: Arqueólogo — Análise de Composição</h3>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-<table style="width:100%;border-collapse:collapse;margin-bottom:15px;">
-<tr style="border-bottom:1px solid #666;">
-<td style="padding:5px;"><b>Pesquisa</b></td>
-<td style="padding:5px;">
-<div style="background:#555;border-radius:4px;height:16px;width:100%;"><div style="background:#5a9d6a;border-radius:4px;height:16px;width:55%;"></div></div>
-</td>
-<td style="padding:5px;text-align:right;">55%</td>
-</tr>
-<tr style="border-bottom:1px solid #666;">
-<td style="padding:5px;"><b>Combate</b></td>
-<td style="padding:5px;">
-<div style="background:#555;border-radius:4px;height:16px;width:100%;"><div style="background:#b85555;border-radius:4px;height:16px;width:25%;"></div></div>
-</td>
-<td style="padding:5px;text-align:right;">25%</td>
-</tr>
-<tr style="border-bottom:1px solid #666;">
-<td style="padding:5px;"><b>Sobrenatural</b></td>
-<td style="padding:5px;">
-<div style="background:#555;border-radius:4px;height:16px;width:100%;"><div style="background:#6d5a9d;border-radius:4px;height:16px;width:15%;"></div></div>
-</td>
-<td style="padding:5px;text-align:right;">15%</td>
-</tr>
-<tr>
-<td style="padding:5px;"><b>Artista</b></td>
-<td style="padding:5px;">
-<div style="background:#555;border-radius:4px;height:16px;width:100%;"><div style="background:#b88d55;border-radius:4px;height:16px;width:5%;"></div></div>
-</td>
-<td style="padding:5px;text-align:right;">5%</td>
-</tr>
-</table>
+  body {
+    background-color: #0e1a12;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(39,174,96,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(88,214,141,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(39,174,96,0.06) 0%, transparent 60%);
+    color: #d0e8d0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
 
-<p style="font-size:0.85em;color:#aaa;"><i>Classificação primária: Pesquisa. O arqueólogo é fundamentalmente um investigador de campo, com competências secundárias de sobrevivência em combate e compreensão de fenômenos sobrenaturais.</i></p>
+  .page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    text-align: center;
+    padding: 25px 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #3a5a3d;
+  }
+
+  .doc-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2em;
+    color: #58d68d;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+  }
+
+  .doc-header .subtitle {
+    font-size: 0.85em;
+    color: #6b8f6b;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  /* ── CLASS DATA BLOCK ── */
+  .class-data {
+    background: linear-gradient(135deg, #1a2a1d 0%, #1f3025 100%);
+    border: 1px solid #2f4a33;
+    border-left: 5px solid #27ae60;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+  }
+
+  .class-data h2 {
+    color: #58d68d;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2f4a33;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .data-item {
+    background: #0d1a0f;
+    border-radius: 6px;
+    padding: 10px 14px;
+    border: 1px solid #1e3520;
+  }
+
+  .data-item .label {
+    font-size: 0.75em;
+    color: #6b8f6b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .data-item .value {
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  .value-survival { color: #f5b942; }
+  .value-difficulty { color: #e74c3c; }
+  .value-resources { color: #58d68d; }
+
+  /* ── COMPOSITION BARS ── */
+  .composition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  .composition-table td {
+    padding: 6px 8px;
+    font-size: 0.9em;
+  }
+
+  .composition-table tr:not(:last-child) {
+    border-bottom: 1px solid #1e3520;
+  }
+
+  .bar-track {
+    background: #1e3520;
+    border-radius: 4px;
+    height: 14px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 14px;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .bar-pesquisa { background: #27ae60; }
+  .bar-combate { background: #e74c3c; }
+  .bar-sobrenatural { background: #8e44ad; }
+  .bar-artista { background: #f39c12; }
+
+  .comp-note {
+    font-size: 0.82em;
+    color: #6b8f6b;
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ── CLASS MAIN BLOCK ── */
+  .class-block {
+    background: linear-gradient(135deg, #1a2a1d 0%, #1f3025 100%);
+    border: 1px solid #2f4a33;
+    border-left: 5px solid #27ae60;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+
+  .class-block h2 {
+    color: #58d68d;
+    font-family: 'Cinzel', serif;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+
+  .class-block .hp-line,
+  .class-block .skills-line {
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+
+  .class-block .skills-line {
+    margin-bottom: 18px;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid #2f4a33;
+    margin: 18px 0;
+  }
+
+  .section-title {
+    color: #f5b942;
+    font-size: 1.05em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .section-title::before {
+    content: "\25B6 ";
+    color: #f5b942;
+  }
+
+  .description-text {
+    line-height: 1.7;
+    font-size: 0.95em;
+    color: #c0dcc0;
+    margin-bottom: 4px;
+  }
+
+  /* ── TALENT BOXES ── */
+  .talent-box {
+    background: #0d1a0f;
+    border: 1px solid #1e3520;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+
+  .talent-box h3 {
+    color: #58d68d;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+  }
+
+  .talent-box h3::before {
+    content: "\25C6 ";
+    color: #58d68d;
+  }
+
+  .talent-box p {
+    line-height: 1.65;
+    font-size: 0.93em;
+    margin-bottom: 6px;
+  }
+
+  .talent-box ul {
+    margin-left: 20px;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #b8d0b8;
+  }
+
+  /* ── TAGS ── */
+  .tags {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+
+  .tag-combate { background: #e74c3c; }
+  .tag-recursos { background: #f39c12; }
+  .tag-conhecimento { background: #3498db; }
+  .tag-sobrenatural { background: #8e44ad; }
+  .tag-utilidade { background: #5dade2; }
+  .tag-treino { background: #27ae60; }
+
+  /* ── SUB-FINDINGS ── */
+  .finding-group {
+    margin-left: 15px;
+    margin-top: 12px;
+  }
+
+  .finding-title {
+    color: #a8d8a8;
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 0.95em;
+  }
+
+  .finding-title::before {
+    content: "\25B6 ";
+  }
+
+  .finding-desc {
+    margin-left: 15px;
+    font-size: 0.92em;
+    color: #b0ccb0;
+    line-height: 1.6;
+  }
+
+  .finding-list {
+    font-size: 0.88em;
+    margin-left: 15px;
+    line-height: 1.6;
+    color: #a0bca0;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #1e3520;
+    color: #3a5a3d;
+    font-size: 0.75em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .data-grid {
+      grid-template-columns: 1fr;
+    }
+    .doc-header h1 {
+      font-size: 1.6em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <h1>Arqueólogo</h1>
+    <div class="subtitle">Pokemon Tabletop Adventures — Homebrew System</div>
+  </div>
+
+  <!-- ═══════ CLASS DATA ═══════ -->
+  <div class="class-data">
+    <h2>▶ Dados da Classe</h2>
+
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="label">Sobrevivência</div>
+        <div class="value value-survival">■ Mediana</div>
+      </div>
+      <div class="data-item">
+        <div class="label">Dificuldade</div>
+        <div class="value value-difficulty">■ Médio / Avançada</div>
+      </div>
+      <div class="data-item">
+        <div class="label">Geração de Recursos</div>
+        <div class="value value-resources">■ Alta</div>
+      </div>
+    </div>
+
+    <table class="composition-table">
+      <tr>
+        <td style="color:#aaa;width:120px;">Pesquisa</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-pesquisa" style="width:55%;"></div></div>
+        </td>
+        <td style="text-align:right;width:50px;">55%</td>
+      </tr>
+      <tr>
+        <td style="color:#aaa;">Combate</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-combate" style="width:25%;"></div></div>
+        </td>
+        <td style="text-align:right;">25%</td>
+      </tr>
+      <tr>
+        <td style="color:#aaa;">Sobrenatural</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-sobrenatural" style="width:15%;"></div></div>
+        </td>
+        <td style="text-align:right;">15%</td>
+      </tr>
+      <tr>
+        <td style="color:#aaa;">Artista</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-artista" style="width:5%;"></div></div>
+        </td>
+        <td style="text-align:right;">5%</td>
+      </tr>
+    </table>
+
+    <p class="comp-note">ⓘ Classificação primária: Pesquisa. O arqueólogo é fundamentalmente um investigador de campo, com competências secundárias de sobrevivência em combate e um toque de mistério sobrenatural.</p>
+  </div>
+
+  <!-- ═══════ MAIN CLASS BLOCK ═══════ -->
+  <div class="class-block">
+
+    <h2>▶ Arqueólogo — Rank 1</h2>
+
+    <p class="hp-line"><b>HP Base:</b> 20</p>
+    <p class="skills-line"><b>Perícias Disponíveis</b> <i>(escolha 2)</i>: Athletics, History, Investigation, Nature</p>
+
+    <hr class="section-divider">
+
+    <div class="section-title">Descrição da Classe</div>
+
+    <p class="description-text">Arqueólogos dedicam suas vidas a desenterrar os segredos do passado, maravilhando-se com as ruínas de civilizações extintas e os fósseis de criaturas que habitaram o mundo antes dos humanos. Uns buscam conhecimento acadêmico, outros caçam relíquias por ambição ou curiosidade insaciável. Qualquer que seja o impulso, esses treinadores transformaram poeira e fragmentos em mapas para compreender o mundo e os Pokémon que o habitam.</p>
+
+    <hr class="section-divider">
+
+    <div class="section-title">Talento Base</div>
+
+    <div class="talent-box">
+      <h3>Investigação Arqueológica</h3>
+
+      <p>Uma vez por dia, ao visitar um novo local selvagem, um Arqueólogo pode usar uma <b>sessão de treino</b> para realizar uma escavação e desvendar possíveis traços do passado ainda presentes no ambiente.</p>
+
+      <p>Faça um teste de <b>Investigation</b> com dificuldade baseada no local. Caso tenha sucesso, role <b>1d3</b> para determinar o encontrado:</p>
+
+      <div class="finding-group">
+        <div class="finding-title">Fragmentos de Fóssil</div>
+        <p class="finding-desc">Restos fossilizados de um Pokémon de outrora. Ao encontrar um fragmento, role <b>1d15</b> para definir a possível espécie.</p>
+        <ul class="finding-list">
+          <li><b>4 fragmentos</b> do mesmo fóssil → É possível trazer o Pokémon de volta à vida por meio de código genético estudado. Requer um laboratório com máquina especializada.</li>
+          <li><b>2 fragmentos</b> do mesmo tipo de fóssil → Pode conceder uma habilidade passiva a um Pokémon baseada na espécie do fóssil.</li>
+        </ul>
+
+        <div class="finding-title" style="margin-top:14px;">Essências de Pokémon</div>
+        <p class="finding-desc">Essências de Pokémon não específicas o suficiente para determinar uma espécie, mas capazes de serem atreladas a uma tipagem. Podem ser usadas por um Pokémon da mesma tipagem para conceder <b>8 pontos de treinamento</b>. A tipagem é baseada no bioma onde a escavação foi realizada.</p>
+        <ul class="finding-list">
+          <li><b>4 essências</b> da mesma tipagem → Podem ser convertidas em um item de evolução do tipo correspondente.</li>
+        </ul>
+
+        <div class="finding-title" style="margin-top:14px;">Relíquias Antigas</div>
+        <p class="finding-desc">Tesouros enterrados pela passagem do tempo. Podem ser vendidos — cada <b>5 pontos na rolagem</b> equivalem a <b>100 Pokédoláres</b>.</p>
+        <ul class="finding-list">
+          <li><b>4 relíquias</b> → Podem ser convertidas em um item com propriedades de um <i>held item</i> aleatório.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section-title">Talentos Opcionais <i style="font-weight:300;color:#6b8f6b;">(escolha 2)</i></div>
+
+    <!-- TALENT 1 -->
+    <div class="talent-box">
+      <h3>Assistente de Escavação</h3>
+      <div class="tags">
+        <span class="tag tag-combate">COMBATE</span>
+        <span class="tag tag-treino">TREINO</span>
+        <span class="tag tag-recursos">RECURSOS</span>
+      </div>
+      <p>Um Pokémon da sua equipe ganha a <b>tipagem secundária Ground</b> e aprende o move <b>Dig</b> (o Pokémon deve ter capacidade física de cavar). Adicionalmente:</p>
+      <ul>
+        <li>O processo de escavação é reduzido para <b>1 hora</b>.</li>
+        <li>Se o Pokémon já possuir a tipagem Ground naturalmente, ele recebe <b>4 pontos de treinamento</b> ao ajudar na escavação.</li>
+        <li>Você pode conceder os bônus deste talento a outro Pokémon da equipe usando um <b>slot de truque avançado</b>.</li>
+      </ul>
+    </div>
+
+    <!-- TALENT 2 -->
+    <div class="talent-box">
+      <h3>Isso Pertence num Museu</h3>
+      <div class="tags">
+        <span class="tag tag-conhecimento">CONHECIMENTO</span>
+        <span class="tag tag-recursos">RECURSOS</span>
+      </div>
+      <p>Você pode identificar a maioria dos itens sem precisar realizar um teste. Ao vender um item para um NPC, faça um teste de <b>History</b> para "embelezar" sua venda — podendo até <b>duplicar o preço base</b> do item.</p>
+    </div>
+
+    <!-- TALENT 3 -->
+    <div class="talent-box">
+      <h3>Explorador Preparado</h3>
+      <div class="tags">
+        <span class="tag tag-combate">COMBATE</span>
+        <span class="tag tag-utilidade">UTILIDADE</span>
+      </div>
+      <p>Suas vestimentas concedem:</p>
+      <ul>
+        <li><b>Imunidade</b> a efeitos de Sandstorm e Hail.</li>
+        <li>Danos ambientais (deslizamentos, quedas, armadilhas, etc.) são <b>reduzidos pela metade</b>.</li>
+        <li><b>Grappling hook mecânico</b> acoplado ao braço com alcance de <b>30 pés</b>. Pode puxá-lo até o local onde o gancho foi fixado sem necessidade de teste. Conta como <b>ação de movimento</b>.</li>
+      </ul>
+    </div>
+
+    <!-- TALENT 4 -->
+    <div class="talent-box">
+      <h3>Relíquia Misteriosa</h3>
+      <div class="tags">
+        <span class="tag tag-sobrenatural">SOBRENATURAL</span>
+        <span class="tag tag-utilidade">UTILIDADE</span>
+      </div>
+      <p>Você carrega uma relíquia com poderes misteriosos. Ninguém sabe ao certo de onde ela veio. Ao escolher este talento, role <b>1d71</b> — o poder da relíquia será baseado na rolagem.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    PTA Homebrew System — Arqueólogo Rank 1 — Documento de Classe
+  </div>
 
 </div>
 
-<div style="background:#2a3a2d;color:#d8e8d8;padding:15px;border-radius:8px;border-left:4px solid #5a9d6a;">
-
-<h2 style="color:#6bb87d;margin-top:0;">Arqueólogo — Rank 1</h2>
-
-<p><b>HP Base:</b> 20</p>
-
-<p><b>Perícias Disponíveis</b> <i>(escolha 2)</i>: Athletics, History, Investigation, Nature</p>
-
-<hr style="border:1px solid #4a6a4d;">
-
-<h4 style="color:#7db3d8;">Descrição da Classe</h4>
-
-<p>Arqueólogos dedicam suas vidas a desenterrar os segredos do passado, maravilhando-se com as ruínas de civilizações extintas e os fósseis de criaturas que habitaram o mundo antes dos humanos. Combinam técnica de campo, conhecimento histórico e uma pitada de magia antiga para revelar o que estava escondido.</p>
-
-<hr style="border:1px solid #4a6a4d;">
-
-<h4 style="color:#c4a860;">Talento Base</h4>
-
-<div style="background:#1a2a1d;padding:10px;border-radius:6px;margin:8px 0;">
-<h3 style="color:#6bb87d;margin-top:0;">Investigação Arqueológica</h3>
-
-<p>Uma vez por dia, ao visitar um novo local selvagem, um Arqueólogo pode usar uma <b>sessão de treino</b> para realizar uma escavação e desvendar possíveis traços do passado ainda presentes naquele lugar.</p>
-
-<p>Faça um teste de <b>Investigation</b> com dificuldade baseada no local. Caso tenha sucesso, role <b>1d3</b> para determinar o que foi encontrado:</p>
-
-<div style="margin-left:15px;">
-
-<h4 style="color:#7db3a8;">Fragmentos de Fóssil</h4>
-<p style="margin-left:10px;">Restos fossilizados de um Pokémon de outrora. Ao encontrar um fragmento, role <b>1d15</b> para definir a possível espécie.</p>
-<ul style="font-size:0.9em;margin-left:10px;">
-<li><b>4 fragmentos</b> do mesmo fóssil → É possível trazer o Pokémon de volta à vida por meio de código genético estudado. Requer um laboratório com máquina especializada.</li>
-<li><b>2 fragmentos</b> do mesmo tipo de fóssil → Pode conceder uma habilidade passiva a um Pokémon baseada na espécie do fóssil.</li>
-</ul>
-
-<h4 style="color:#7db3a8;">Essências de Pokémon</h4>
-<p style="margin-left:10px;">Essências de Pokémon não específicas o suficiente para determinar uma espécie, mas capazes de serem atreladas a uma tipagem. Podem ser usadas por um Pokémon da mesma tipagem ou tipo secundário.</p>
-<ul style="font-size:0.9em;margin-left:10px;">
-<li><b>4 essências</b> da mesma tipagem → Podem ser convertidas em um item de evolução do tipo correspondente.</li>
-</ul>
-
-<h4 style="color:#7db3a8;">Relíquias Antigas</h4>
-<p style="margin-left:10px;">Tesouros enterrados pela passagem do tempo. Podem ser vendidos — cada <b>5 pontos na rolagem</b> equivalem a <b>100 Pokédoláres</b>.</p>
-<ul style="font-size:0.9em;margin-left:10px;">
-<li><b>4 relíquias</b> → Podem ser convertidas em um item com propriedades de um <i>held item</i> aleatório.</li>
-</ul>
-
-</div>
-</div>
-
-<hr style="border:1px solid #4a6a4d;">
-
-<h4 style="color:#c4a860;">Talentos Opcionais</h4> <i>(escolha 2)</i>
-
-<div style="background:#1a2a1d;padding:10px;border-radius:6px;margin:8px 0;">
-<h3 style="color:#6bb87d;margin-top:0;">Assistente de Escavação</h3>
-<p><span style="background:#5a9d6a;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">PESQUISA</span> <span style="background:#b85555;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">COMBATE</span></p>
-<p>Um Pokémon da sua equipe ganha a <b>tipagem secundária Ground</b> e aprende o move <b>Dig</b> (o Pokémon deve ter capacidade física de cavar). Adicionalmente:</p>
-<ul>
-<li>O processo de escavação é reduzido para <b>1 hora</b>.</li>
-<li>Se o Pokémon já possuir a tipagem Ground naturalmente, ele recebe <b>4 pontos de treinamento</b> ao ajudar na escavação.</li>
-<li>Você pode conceder os bônus deste talento a outro Pokémon da equipe usando um <b>slot de truque avançado</b>.</li>
-</ul>
-</div>
-
-<div style="background:#1a2a1d;padding:10px;border-radius:6px;margin:8px 0;">
-<h3 style="color:#6bb87d;margin-top:0;">Isso Pertence num Museu</h3>
-<p><span style="background:#5a9d6a;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">PESQUISA</span> <span style="background:#b88d55;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">ARTISTA</span></p>
-<p>Você pode identificar a maioria dos itens sem precisar realizar um teste. Ao vender um item para um NPC, faça um teste de <b>History</b> para "embelezar" sua venda — podendo até <b>duplicar o valor</b> em caso de sucesso crítico.</p>
-</div>
-
-<div style="background:#1a2a1d;padding:10px;border-radius:6px;margin:8px 0;">
-<h3 style="color:#6bb87d;margin-top:0;">Explorador Preparado</h3>
-<p><span style="background:#b85555;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">COMBATE</span></p>
-<p>Suas vestimentas concedem:</p>
-<ul>
-<li><b>Imunidade</b> a efeitos de <i>Sandstorm</i> e <i>Hail</i>.</li>
-<li>Danos ambientais (deslizamentos, quedas, armadilhas, etc.) são <b>reduzidos pela metade</b>.</li>
-<li><b>Grappling hook mecânico</b> acoplado ao braço com alcance de <b>30 pés</b>. Pode puxá-lo até o local onde o gancho foi fixado sem necessidade de teste. Conta como <b>ação de movimento</b>.</li>
-</ul>
-</div>
-
-<div style="background:#1a2a1d;padding:10px;border-radius:6px;margin:8px 0;">
-<h3 style="color:#6bb87d;margin-top:0;">Relíquia Misteriosa</h3>
-<p><span style="background:#6d5a9d;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">SOBRENATURAL</span></p>
-<p>Você carrega uma relíquia com poderes misteriosos. Ninguém sabe ao certo de onde ela veio. Ao escolher este talento, role <b>1d71</b> — o poder da relíquia será baseado na rolagem.</p>
-</div>
-
-</div>
+</body>
+</html>
