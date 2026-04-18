@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PTA Homebrew — <!-- [NOME_DA_CLASSE] --> Rank <!-- [NUMERO_DO_RANK] --></title>
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  PTA HOMEBREW — TEMPLATE DE CLASSE                              ║
+║                                                                  ║
+║  INSTRUÇÕES DE USO:                                              ║
+║  Procure por <!-- [PLACEHOLDER] --> no documento.                ║
+║  Cada placeholder indica o que deve ser inserido no local.       ║
+║  Textos de exemplo estão marcados com /* EXEMPLO */ quando       ║
+║  necessário.                                                     ║
+║                                                                  ║
+║  PARA ALTERAR O TEMA DE COR DA CLASSE:                           ║
+║  Substitua todas as ocorrências das cores-primárias abaixo       ║
+║  pelas cores da categoria desejada:                               ║
+║                                                                  ║
+║  Batalha    → #c0392b (primária) / #e74c3c (secundária)          ║
+║  Pesquisa   → #1e8449 (primária) / #27ae60 (secundária)          ║
+║  Sobrenatural → #6c3483 (primária) / #8e44ad (secundária)        ║
+║  Artista    → #d4880f (primária) / #f39c12 (secundária)          ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* ══════════════════════════════════
+     CORES DO TEMA — PESQUISA (PADRÃO)
+     Altere aqui para mudar o tema inteiro.
+     ══════════════════════════════════ */
+  :root {
+    --theme-primary: #27ae60;
+    --theme-primary-light: #58d68d;
+    --theme-primary-dark: #1e8449;
+    --theme-glow-subtle: rgba(39,174,96,0.08);
+    --theme-glow-mid: rgba(88,214,141,0.05);
+    --theme-glow-low: rgba(39,174,96,0.06);
+
+    --bg-body: #0e1a12;
+    --bg-panel: #1a2a1d;
+    --bg-panel-alt: #1f3025;
+    --bg-inner: #0d1a0f;
+    --border-main: #2f4a33;
+    --border-subtle: #1e3520;
+    --border-divider: #3a5a3d;
+    --text-main: #d0e8d0;
+    --text-muted: #6b8f6b;
+    --text-content: #c0dcc0;
+    --text-subtle: #a0bca0;
+    --text-finding: #a8d8a8;
+    --text-desc: #b0ccb0;
+
+    /* Cores dos dados da classe */
+    --clr-survival: #f5b942;
+    --clr-difficulty: #e74c3c;
+    --clr-resources: #58d68d;
+
+    /* Cores das barras de composição */
+    --clr-bar-pesquisa: #27ae60;
+    --clr-bar-combate: #e74c3c;
+    --clr-bar-sobrenatural: #8e44ad;
+    --clr-bar-artista: #f39c12;
+
+    /* Cores das tags */
+    --clr-tag-combate: #e74c3c;
+    --clr-tag-recursos: #f39c12;
+    --clr-tag-conhecimento: #3498db;
+    --clr-tag-sobrenatural: #8e44ad;
+    --clr-tag-utilidade: #5dade2;
+    --clr-tag-treino: #27ae60;
+
+    /* Footer */
+    --clr-footer: #3a5a3d;
+
+    /* Seções */
+    --clr-section-title: #f5b942;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, var(--theme-glow-subtle) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, var(--theme-glow-mid) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, var(--theme-glow-low) 0%, transparent 60%);
+    color: var(--text-main);
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+
+  .page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    text-align: center;
+    padding: 25px 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-divider);
+  }
+
+  .doc-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2em;
+    color: var(--theme-primary-light);
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+  }
+
+  .doc-header .subtitle {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  /* ── CLASS DATA BLOCK ── */
+  .class-data {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-panel-alt) 100%);
+    border: 1px solid var(--border-main);
+    border-left: 5px solid var(--theme-primary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+  }
+
+  .class-data h2 {
+    color: var(--theme-primary-light);
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-main);
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .data-item {
+    background: var(--bg-inner);
+    border-radius: 6px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .data-item .label {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .data-item .value {
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  .value-survival { color: var(--clr-survival); }
+  .value-difficulty { color: var(--clr-difficulty); }
+  .value-resources { color: var(--clr-resources); }
+
+  /* ── COMPOSITION BARS ── */
+  .composition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  .composition-table td {
+    padding: 6px 8px;
+    font-size: 0.9em;
+  }
+
+  .composition-table tr:not(:last-child) {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .bar-track {
+    background: var(--border-subtle);
+    border-radius: 4px;
+    height: 14px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 14px;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .bar-pesquisa { background: var(--clr-bar-pesquisa); }
+  .bar-combate { background: var(--clr-bar-combate); }
+  .bar-sobrenatural { background: var(--clr-bar-sobrenatural); }
+  .bar-artista { background: var(--clr-bar-artista); }
+
+  .comp-note {
+    font-size: 0.82em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ── CLASS MAIN BLOCK ── */
+  .class-block {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-panel-alt) 100%);
+    border: 1px solid var(--border-main);
+    border-left: 5px solid var(--theme-primary);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+
+  .class-block h2 {
+    color: var(--theme-primary-light);
+    font-family: 'Cinzel', serif;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+
+  .class-block .hp-line,
+  .class-block .skills-line {
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+
+  .class-block .skills-line {
+    margin-bottom: 18px;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border-main);
+    margin: 18px 0;
+  }
+
+  .section-title {
+    color: var(--clr-section-title);
+    font-size: 1.05em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .section-title::before {
+    content: "\25B6 ";
+    color: var(--clr-section-title);
+  }
+
+  .description-text {
+    line-height: 1.7;
+    font-size: 0.95em;
+    color: var(--text-content);
+    margin-bottom: 4px;
+  }
+
+  /* ── TALENT BOXES ── */
+  .talent-box {
+    background: var(--bg-inner);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+
+  .talent-box h3 {
+    color: var(--theme-primary-light);
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+  }
+
+  .talent-box h3::before {
+    content: "\25C6 ";
+    color: var(--theme-primary-light);
+  }
+
+  .talent-box p {
+    line-height: 1.65;
+    font-size: 0.93em;
+    margin-bottom: 6px;
+  }
+
+  .talent-box ul {
+    margin-left: 20px;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: var(--text-subtle);
+  }
+
+  /* ── TAGS ── */
+  .tags {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+
+  .tag-combate { background: var(--clr-tag-combate); }
+  .tag-recursos { background: var(--clr-tag-recursos); }
+  .tag-conhecimento { background: var(--clr-tag-conhecimento); }
+  .tag-sobrenatural { background: var(--clr-tag-sobrenatural); }
+  .tag-utilidade { background: var(--clr-tag-utilidade); }
+  .tag-treino { background: var(--clr-tag-treino); }
+
+  /* ── SUB-FINDINGS ── */
+  .finding-group {
+    margin-left: 15px;
+    margin-top: 12px;
+  }
+
+  .finding-title {
+    color: var(--text-finding);
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 0.95em;
+  }
+
+  .finding-title::before {
+    content: "\25B6 ";
+  }
+
+  .finding-desc {
+    margin-left: 15px;
+    font-size: 0.92em;
+    color: var(--text-desc);
+    line-height: 1.6;
+  }
+
+  .finding-list {
+    font-size: 0.88em;
+    margin-left: 15px;
+    line-height: 1.6;
+    color: var(--text-subtle);
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--clr-footer);
+    font-size: 0.75em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .data-grid {
+      grid-template-columns: 1fr;
+    }
+    .doc-header h1 {
+      font-size: 1.6em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ═══════════════════════════════════════
+       HEADER — Substitua o nome da classe
+       ═══════════════════════════════════════ -->
+  <div class="doc-header">
+    <h1><!-- [NOME_DA_CLASSE] --></h1>
+    <div class="subtitle">Pokemon Tabletop Adventures — Homebrew System</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CLASS DATA — Dados gerais e composição
+       ═══════════════════════════════════════ -->
+  <div class="class-data">
+    <h2>▶ Dados da Classe</h2>
+
+    <!-- GRID: Sobrevivência / Dificuldade / Geração de Recursos -->
+    <div class="data-grid">
+
+      <div class="data-item">
+        <div class="label">Sobrevivência</div>
+        <div class="value value-survival">■ <!-- [SOBREVIVENCIA: Baixa / Mediana / Alta] --></div>
+      </div>
+
+      <div class="data-item">
+        <div class="label">Dificuldade</div>
+        <div class="value value-difficulty">■ <!-- [DIFICULDADE: Iniciante / Médio / Médio-Avançada / Avançada] --></div>
+      </div>
+
+      <div class="data-item">
+        <div class="label">Geração de Recursos</div>
+        <div class="value value-resources">■ <!-- [GERACAO_RECURSOS: Baixa / Média / Alta / Muito Alta] --></div>
+      </div>
+
+    </div>
+
+    <!-- BARRAS DE COMPOSIÇÃO
+         Ajuste as porcentagens no style="width:X%;"
+         Para remover uma linha, basta excluí-la.
+         Para adicionar umalinha, copie um bloco <tr>...</tr>
+         e altere a classe da barra (bar-pesquisa, bar-combate, etc.) -->
+    <table class="composition-table">
+
+      <tr>
+        <td style="color:#aaa;width:120px;">Pesquisa</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-pesquisa" style="width:<!-- [PERCENT_PESQUISA] -->%;"></div></div>
+        </td>
+        <td style="text-align:right;width:50px;"><!-- [PERCENT_PESQUISA] -->%</td>
+      </tr>
+
+      <tr>
+        <td style="color:#aaa;">Combate</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-combate" style="width:<!-- [PERCENT_COMBATE] -->%;"></div></div>
+        </td>
+        <td style="text-align:right;"><!-- [PERCENT_COMBATE] -->%</td>
+      </tr>
+
+      <tr>
+        <td style="color:#aaa;">Sobrenatural</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-sobrenatural" style="width:<!-- [PERCENT_SOBRENATURAL] -->%;"></div></div>
+        </td>
+        <td style="text-align:right;"><!-- [PERCENT_SOBRENATURAL] -->%</td>
+      </tr>
+
+      <tr>
+        <td style="color:#aaa;">Artista</td>
+        <td>
+          <div class="bar-track"><div class="bar-fill bar-artista" style="width:<!-- [PERCENT_ARTISTA] -->%;"></div></div>
+        </td>
+        <td style="text-align:right;"><!-- [PERCENT_ARTISTA] -->%</td>
+      </tr>
+
+    </table>
+
+    <p class="comp-note">ⓘ <!-- [NOTA_COMPOSICAO: Texto descritivo sobre a classificação primária da classe] --></p>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MAIN CLASS BLOCK — Conteúdo principal
+       ═══════════════════════════════════════ -->
+  <div class="class-block">
+
+    <h2>▶ <!-- [NOME_DA_CLASSE] --> — Rank <!-- [NUMERO_DO_RANK] --></h2>
+
+    <p class="hp-line"><b>HP Base:</b> <!-- [HP_BASE] --></p>
+    <p class="skills-line"><b>Perícias Disponíveis</b> <i>(escolha <!-- [NUM_PERICIAS] -->)</i>: <!-- [LISTA_DE_PERICIAS separadas por vírgula] --></p>
+
+    <hr class="section-divider">
+
+    <!-- ── DESCRIÇÃO DA CLASSE ── -->
+    <div class="section-title">Descrição da Classe</div>
+
+    <p class="description-text"><!-- [DESCRICAO_DA_CLASSE: Parágrafo narrativo descrevendo a identidade e tema da classe.] --></p>
+
+    <hr class="section-divider">
+
+    <!-- ── TALENTO BASE ── -->
+    <div class="section-title">Talento Base</div>
+
+    <div class="talent-box">
+      <h3><!-- [NOME_TALENTO_BASE] --></h3>
+
+      <p><!-- [DESCRICAO_TALENTO_BASE: O que o talento faz, requisitos, condições de uso.] --></p>
+
+      <!-- Se o talento base tiver sub-itens / achados, use finding-group.
+           Caso contrário, remova todo o bloco finding-group. -->
+
+      <p><!-- [TEXTO_ADICIONAL_TALENTO_BASE: Instruções de rolagem, testes, etc.] --></p>
+
+      <div class="finding-group">
+
+        <div class="finding-title"><!-- [NOME_SUB_ITEM_1] --></div>
+        <p class="finding-desc"><!-- [DESCRICAO_SUB_ITEM_1] --></p>
+        <ul class="finding-list">
+          <li><!-- [DETALHE_SUB_ITEM_1a] --></li>
+          <li><!-- [DETALHE_SUB_ITEM_1b] --></li>
+          <!-- Adicione mais <li> conforme necessário -->
+        </ul>
+
+        <div class="finding-title" style="margin-top:14px;"><!-- [NOME_SUB_ITEM_2] --></div>
+        <p class="finding-desc"><!-- [DESCRICAO_SUB_ITEM_2] --></p>
+        <ul class="finding-list">
+          <li><!-- [DETALHE_SUB_ITEM_2a] --></li>
+          <!-- Adicione mais <li> conforme necessário -->
+        </ul>
+
+        <!-- Para adicionar mais sub-itens, copie o bloco:
+        <div class="finding-title" style="margin-top:14px;">NOME</div>
+        <p class="finding-desc">DESCRIÇÃO</p>
+        <ul class="finding-list">
+          <li>DETALHE</li>
+        </ul>
+        -->
+
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ── TALENTOS OPCIONAIS ── -->
+    <div class="section-title">Talentos Opcionais <i style="font-weight:300;color:var(--text-muted);">(escolha <!-- [NUM_TALENTOS_ESCOLHA] -->)</i></div>
+
+    <!-- ╔═══════════════════════════════════════╗
+         ║  TALENTO OPCIONAL — TEMPLATE          ║
+         ║  Copie este bloco para cada talento.  ║
+         ║  Remova talentos não utilizados.      ║
+         ║  Tags disponíveis:                    ║
+         ║    tag-combate                         ║
+         ║    tag-recursos                        ║
+         ║    tag-conhecimento                    ║
+         ║    tag-sobrenatural                    ║
+         ║    tag-utilidade                       ║
+         ║    tag-treino                          ║
+         ╚═══════════════════════════════════════╝ -->
+
+    <!-- ── TALENTO OPCIONAL 1 ── -->
+    <div class="talent-box">
+      <h3><!-- [NOME_TALENTO_OPCIONAL_1] --></h3>
+      <div class="tags">
+        <span class="tag tag-<!-- [TAG_1a: combate / recursos / conhecimento / sobrenatural / utilidade / treino] -->"><!-- [LABEL_TAG_1a: COMBATE / RECURSOS / CONHECIMENTO / SOBRENATURAL / UTILIDADE / TREINO] --></span>
+        <span class="tag tag-<!-- [TAG_1b] -->"><!-- [LABEL_TAG_1b] --></span>
+        <!-- Adicione ou remova <span> de tag conforme necessário -->
+      </div>
+      <p><!-- [DESCRICAO_TALENTO_OPCIONAL_1] --></p>
+      <!-- Se houver lista de efeitos: -->
+      <ul>
+        <li><!-- [EFEITO_1a] --></li>
+        <li><!-- [EFEITO_1b] --></li>
+        <li><!-- [EFEITO_1c] --></li>
+      </ul>
+    </div>
+
+    <!-- ── TALENTO OPCIONAL 2 ── -->
+    <div class="talent-box">
+      <h3><!-- [NOME_TALENTO_OPCIONAL_2] --></h3>
+      <div class="tags">
+        <span class="tag tag-<!-- [TAG_2a] -->"><!-- [LABEL_TAG_2a] --></span>
+        <span class="tag tag-<!-- [TAG_2b] -->"><!-- [LABEL_TAG_2b] --></span>
+      </div>
+      <p><!-- [DESCRICAO_TALENTO_OPCIONAL_2] --></p>
+    </div>
+
+    <!-- ── TALENTO OPCIONAL 3 ── -->
+    <div class="talent-box">
+      <h3><!-- [NOME_TALENTO_OPCIONAL_3] --></h3>
+      <div class="tags">
+        <span class="tag tag-<!-- [TAG_3a] -->"><!-- [LABEL_TAG_3a] --></span>
+        <span class="tag tag-<!-- [TAG_3b] -->"><!-- [LABEL_TAG_3b] --></span>
+      </div>
+      <p><!-- [DESCRICAO_TALENTO_OPCIONAL_3] --></p>
+      <ul>
+        <li><!-- [EFEITO_3a] --></li>
+        <li><!-- [EFEITO_3b] --></li>
+        <li><!-- [EFEITO_3c] --></li>
+      </ul>
+    </div>
+
+    <!-- ── TALENTO OPCIONAL 4 ── -->
+    <div class="talent-box">
+      <h3><!-- [NOME_TALENTO_OPCIONAL_4] --></h3>
+      <div class="tags">
+        <span class="tag tag-<!-- [TAG_4a] -->"><!-- [LABEL_TAG_4a] --></span>
+        <span class="tag tag-<!-- [TAG_4b] -->"><!-- [LABEL_TAG_4b] --></span>
+      </div>
+      <p><!-- [DESCRICAO_TALENTO_OPCIONAL_4] --></p>
+    </div>
+
+    <!-- Para adicionar mais talentos opcionais, copie qualquer bloco
+         <div class="talent-box">...</div> acima e ajuste o conteúdo. -->
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       RANK ADICIONAL (OPCIONAL)
+       Copie todo o bloco <div class="class-block">...</div>
+       para criar Rank 2 e Rank 3. Altere apenas:
+       - O número do rank no <h2>
+       - O conteúdo dos talentos
+       ═══════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <div class="doc-footer">
+    PTA Homebrew System — <!-- [NOME_DA_CLASSE] --> Rank <!-- [NUMERO_DO_RANK] --> — Documento de Classe
+  </div>
+
+</div>
+
+</body>
+</html>
