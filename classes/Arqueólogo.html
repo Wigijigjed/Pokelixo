@@ -1,24 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arqueólogo Class</title>
-</head>
-<body>
-    <h1>Arqueólogo Class</h1>
-    <h2>Class Stats</h2>
-    <ul>
-        <li><strong>Health:</strong> 100</li>
-        <li><strong>Stamina:</strong> 80</li>
-        <li><strong>Wisdom:</strong> 90</li>
-        <li><strong>Agility:</strong> 70</li>
-    </ul>
-    <h2>Talents</h2>
-    <ul>
-        <li><strong>Artifact Recovery:</strong> Increases the chances of recovering rare artifacts.</li>
-        <li><strong>Ancient Lore:</strong> Gain insights into ancient cultures, providing advantages in quests.</li>
-        <li><strong>Stealth:</strong> Can move silently in the environment, avoiding detection.</li>
-    </ul>
-</body>
-</html>
+"Avaliando a classe..." Analiso cada talento, identificando os elementos temáticos e mecânicos para determinar a composição da classe.
+
+<div style="background:#2a2a3d;color:#e0e0e0;padding:15px;border-radius:8px;border-left:4px solid #27ae60;">
+
+<h3 style="color:#58d68d;margin-top:0;">🔬 Classe: Arqueólogo — Análise de Composição</h3>
+
+<table style="width:100%;border-collapse:collapse;margin-bottom:15px;">
+<tr style="border-bottom:1px solid #555;">
+<td style="padding:5px;"><b>Pesquisa</b></td>
+<td style="padding:5px;">
+<div style="background:#444;border-radius:4px;height:16px;width:100%;"><div style="background:#27ae60;border-radius:4px;height:16px;width:55%;"></div></div>
+</td>
+<td style="padding:5px;text-align:right;">55%</td>
+</tr>
+<tr style="border-bottom:1px solid #555;">
+<td style="padding:5px;"><b>Combate</b></td>
+<td style="padding:5px;">
+<div style="background:#444;border-radius:4px;height:16px;width:100%;"><div style="background:#e74c3c;border-radius:4px;height:16px;width:25%;"></div></div>
+</td>
+<td style="padding:5px;text-align:right;">25%</td>
+</tr>
+<tr style="border-bottom:1px solid #555;">
+<td style="padding:5px;"><b>Sobrenatural</b></td>
+<td style="padding:5px;">
+<div style="background:#444;border-radius:4px;height:16px;width:100%;"><div style="background:#8e44ad;border-radius:4px;height:16px;width:15%;"></div></div>
+</td>
+<td style="padding:5px;text-align:right;">15%</td>
+</tr>
+<tr>
+<td style="padding:5px;"><b>Artista</b></td>
+<td style="padding:5px;">
+<div style="background:#444;border-radius:4px;height:16px;width:100%;"><div style="background:#f39c12;border-radius:4px;height:16px;width:5%;"></div></div>
+</td>
+<td style="padding:5px;text-align:right;">5%</td>
+</tr>
+</table>
+
+<p style="font-size:0.85em;color:#999;"><i>Classificação primária: Pesquisa. O arqueólogo é fundamentalmente um investigador de campo, com competências secundárias de sobrevivência em combate e um toque de mistério sobrenatural.</i></p>
+
+</div>
+
+<div style="background:#1a2a1d;color:#d0e8d0;padding:15px;border-radius:8px;border-left:4px solid #27ae60;">
+
+<h2 style="color:#58d68d;margin-top:0;">🏛️ Arqueólogo — Rank 1</h2>
+
+<p><b>HP Base:</b> 20</p>
+
+<p><b>Perícias Disponíveis</b> <i>(escolha 2)</i>: Athletics, History, Investigation, Nature</p>
+
+<hr style="border:1px solid #3a5a3d;">
+
+<h4 style="color:#85c1e9;">Descrição da Classe</h4>
+
+<p>Arqueólogos dedicam suas vidas a desenterrar os segredos do passado, maravilhando-se com as ruínas de civilizações extintas e os fósseis de criaturas que habitaram o mundo antes dos humanos. Uns buscam conhecimento acadêmico, outros caçam relíquias por ambição ou curiosidade insaciável. Qualquer que seja o impulso, esses treinadores transformaram poeira e fragmentos em mapas para compreender o mundo e os Pokémon que o habitam.</p>
+
+<hr style="border:1px solid #3a5a3d;">
+
+<h4 style="color:#f5b942;">Talento Base</h4>
+
+<div style="background:#0d1a0f;padding:10px;border-radius:6px;margin:8px 0;">
+<h3 style="color:#58d68d;margin-top:0;">🔦 Investigação Arqueológica</h3>
+
+<p>Uma vez por dia, ao visitar um novo local selvagem, um Arqueólogo pode usar uma <b>sessão de treino</b> para realizar uma escavação e desvendar possíveis traços do passado ainda presentes no ambiente.</p>
+
+<p>Faça um teste de <b>Investigation</b> com dificuldade baseada no local. Caso tenha sucesso, role <b>1d3</b> para determinar o que foi encontrado:</p>
+
+<div style="margin-left:15px;">
+
+<h4 style="color:#a8d8a8;">🦴 Fragmentos de Fóssil</h4>
+<p style="margin-left:10px;">Restos fossilizados de um Pokémon de outrora. Ao encontrar um fragmento, role <b>1d15</b> para definir a possível espécie.</p>
+<ul style="font-size:0.9em;margin-left:10px;">
+<li><b>4 fragmentos</b> do mesmo fóssil → É possível trazer o Pokémon de volta à vida por meio de código genético estudado. Requer um laboratório com máquina especializada.</li>
+<li><b>2 fragmentos</b> do mesmo tipo de fóssil → Pode conceder uma habilidade passiva a um Pokémon baseada na espécie do fóssil.</li>
+</ul>
+
+<h4 style="color:#a8d8a8;">💎 Essências de Pokémon</h4>
+<p style="margin-left:10px;">Essências de Pokémon não específicas o suficiente para determinar uma espécie, mas capazes de serem atreladas a uma tipagem. Podem ser usadas por um Pokémon da mesma tipagem para conceder <b>8 pontos de treinamento</b>. A tipagem é baseada no bioma onde a escavação foi realizada.</p>
+<ul style="font-size:0.9em;margin-left:10px;">
+<li><b>4 essências</b> da mesma tipagem → Podem ser convertidas em um item de evolução do tipo correspondente.</li>
+</ul>
+
+<h4 style="color:#a8d8a8;">壶 Relíquias Antigas</h4>
+<p style="margin-left:10px;">Tesouros enterrados pela passagem do tempo. Podem ser vendidos — cada <b>5 pontos na rolagem</b> equivalem a <b>100 Pokédoláres</b>.</p>
+<ul style="font-size:0.9em;margin-left:10px;">
+<li><b>4 relíquias</b> → Podem ser convertidas em um item com propriedades de um <i>held item</i> aleatório.</li>
+</ul>
+
+</div>
+</div>
+
+<hr style="border:1px solid #3a5a3d;">
+
+<h4 style="color:#f5b942;">Talentos Opcionais</h4> <i>(escolha 2)</i>
+
+<div style="background:#0d1a0f;padding:10px;border-radius:6px;margin:8px 0;">
+<h3 style="color:#58d68d;margin-top:0;">⛏️ Assistente de Escavação</h3>
+<p><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">PESQUISA</span> <span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">COMBATE</span></p>
+<p>Um Pokémon da sua equipe ganha a <b>tipagem secundária Ground</b> e aprende o move <b>Dig</b> (o Pokémon deve ter capacidade física de cavar). Adicionalmente:</p>
+<ul>
+<li>O processo de escavação é reduzido para <b>1 hora</b>.</li>
+<li>Se o Pokémon já possuir a tipagem Ground naturalmente, ele recebe <b>4 pontos de treinamento</b> ao ajudar na escavação.</li>
+<li>Você pode conceder os bônus deste talento a outro Pokémon da equipe usando um <b>slot de truque avançado</b>.</li>
+</ul>
+</div>
+
+<div style="background:#0d1a0f;padding:10px;border-radius:6px;margin:8px 0;">
+<h3 style="color:#58d68d;margin-top:0;">🏛️ Isso Pertence num Museu</h3>
+<p><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">PESQUISA</span> <span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">ARTISTA</span></p>
+<p>Você pode identificar a maioria dos itens sem precisar realizar um teste. Ao vender um item para um NPC, faça um teste de <b>History</b> para "embelezar" sua venda — podendo até <b>duplicar o preço base</b> do item.</p>
+</div>
+
+<div style="background:#0d1a0f;padding:10px;border-radius:6px;margin:8px 0;">
+<h3 style="color:#58d68d;margin-top:0;">🧭 Explorador Preparado</h3>
+<p><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">COMBATE</span></p>
+<p>Suas vestimentas concedem:</p>
+<ul>
+<li><b>Imunidade</b> a efeitos de <i>Sandstorm</i> e <i>Hail</i>.</li>
+<li>Danos ambientais (deslizamentos, quedas, armadilhas, etc.) são <b>reduzidos pela metade</b>.</li>
+<li><b>Grappling hook mecânico</b> acoplado ao braço com alcance de <b>30 pés</b>. Pode puxá-lo até o local onde o gancho foi fixado sem necessidade de teste. Conta como <b>ação de movimento</b>.</li>
+</ul>
+</div>
+
+<div style="background:#0d1a0f;padding:10px;border-radius:6px;margin:8px 0;">
+<h3 style="color:#58d68d;margin-top:0;">🔮 Relíquia Misteriosa</h3>
+<p><span style="background:#8e44ad;color:#fff;padding:1px 6px;border-radius:3px;font-size:0.75em;">SOBRENATURAL</span></p>
+<p>Você carrega uma relíquia com poderes misteriosos. Ninguém sabe ao certo de onde ela veio. Ao escolher este talento, role <b>1d71</b> — o poder da relíquia será baseado na rolagem.</p>
+</div>
+
+</div>
+
+---
+
+"A reorganização está completa. Cada talento recebeu uma tag indicando sua categoria predominante, facilitando a leitura da composição da classe. O Arqueólogo é, em essência, uma **classe de Pesquisa com incursões em Combate (sobrevivência de campo), Sobrenatural (relíquia mística) e um traço mínimo de Artista (embelezamento de vendas).**"
+
+"Quer que eu ajuste algo —tom, detalhamento, ou expandir os ranks 2 e 3?"
